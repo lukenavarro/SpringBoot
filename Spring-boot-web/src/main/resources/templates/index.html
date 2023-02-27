@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Llamamos a la libreria de Thymeleaf -->
+<html xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Hola Spring</title>
+    <!-- Utilizamos el th:text="${key}" para sacar el Value por pantalla. -->
+    <title th:text="${titulo}"></title>
 </head>
 <body>
-    <h1>Hola Spring!</h1>
+    <h1 th:text="${titulo}"></h1>
 </body>
 </html>
