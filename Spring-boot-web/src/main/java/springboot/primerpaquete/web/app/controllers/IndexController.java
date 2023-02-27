@@ -16,8 +16,9 @@ public class IndexController {
      */
     @GetMapping({"/index","/","/home"})
     public String index(Model model){
+        //Podemos hacerlos con ModelMap y con Map(Java Base) con el map utilizaremos el map.put y indicarle los tipos de la Clave Valor
         // añadimos al model(K,V) y lo enviamos al HMTL index.
-        model.addAttribute("titulo","hola Springboot!");
+        model.addAttribute("titulo","hola Springboot con Model!");
         return "index";
     }
 }
