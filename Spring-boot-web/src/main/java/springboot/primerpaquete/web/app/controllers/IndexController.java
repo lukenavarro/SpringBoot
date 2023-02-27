@@ -16,7 +16,6 @@ public class IndexController {
      */
     @GetMapping({"/index","/","/home"})
     public String index(Model model){
-
         // añadimos al model(K,V) y lo enviamos al HMTL index.
         model.addAttribute("titulo","hola Springboot!");
         return "index";
