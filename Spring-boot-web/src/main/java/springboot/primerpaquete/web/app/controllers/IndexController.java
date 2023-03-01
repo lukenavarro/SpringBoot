@@ -5,8 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import springboot.primerpaquete.web.app.models.Usuario;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 //Utilizamos el @Controller para establecer el controlador
@@ -50,5 +54,37 @@ public class IndexController {
         mv.addObject("titulo","Hola Springboot con Model And view!");
         mv.setViewName("index");
         return mv;
+    }
+
+    /*
+        Utilizaremos un objeto Usuario para comenzar a compartir mediante clases POJO con el framework Spring
+        Lo primero de todo sera declarar y inizializar el objeto usuario con sus parametros
+        una vez hecho esto lo añadiremos al model y con el titulo sacaremos el usuario.
+     */
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public String perfil(Model model){
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Francisco");
+        usuario.setApellidos("Navarro");
+        usuario.setEmail("fran@gmail.com");
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("titulo","El perfil del usuario: "+usuario.getNombre());
+        return "perfil";
+    }
+    /*
+      Utilizaremos una lista del objeto Usuario para comenzar a compartir mediante clases POJO con el framework Spring
+      Lo primero de todo sera declarar y inizializar la lista usuarios con sus parametros
+      una vez hecho esto lo añadiremos al model y con el titulo sacaremos el usuario.
+   */
+    @RequestMapping(value = "/listar", method = RequestMethod.GET)
+    public String listar(Model model){
+
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+        usuarios.add(new Usuario("Francisco","Navarro","fran@gmail.com"));
+        usuarios.add(new Usuario("Francisco","Ureña","Francisco@gmail.com"));
+        usuarios.add(new Usuario("Francisco","De Juan","de Juan@gmail.com"));
+        model.addAttribute("titulo","Listado de usuarios");
+        model.addAttribute("usuarios",usuarios);
+        return "listar";
     }
 }
